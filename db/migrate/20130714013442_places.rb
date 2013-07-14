@@ -17,7 +17,7 @@ class Places < ActiveRecord::Migration
       t.string :phone
       t.string :state_code
       t.text :categories
-      t.test :photo_url
+      t.text :photo_url
       t.float :distance
       t.string :name
       t.text :neighborhoods
