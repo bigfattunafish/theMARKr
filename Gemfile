@@ -63,6 +63,5 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'yelpster'
-gem 'oauth'
 
 
