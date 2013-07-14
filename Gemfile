@@ -63,5 +63,5 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'yelpster'
-
+gem 'gmaps4rails'
 
