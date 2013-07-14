@@ -1,2 +1,6 @@
-class HomeController < ActionController
+class HomeController < ApplicationController
+
+  def index
+  end
+
 end
