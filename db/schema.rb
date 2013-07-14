@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130714013442) do
+ActiveRecord::Schema.define(:version => 20130714210212) do
 
   create_table "places", :force => true do |t|
     t.text     "rating_img_url"
@@ -39,6 +39,9 @@ ActiveRecord::Schema.define(:version => 20130714013442) do
     t.text     "nearby_url"
     t.text     "reviews"
     t.text     "photo_url_smal"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "gmaps"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
   end
