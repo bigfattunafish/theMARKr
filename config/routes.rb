@@ -1,5 +1,9 @@
 Themarkr::Application.routes.draw do
   root :to => 'home#index', as: 'home'
+
+  get '/:user_id' => 'users#index', as: 'user_home'
+  get '/:user_id/search' => 'users#search', as: 'search_result'
+
   resources :places
 
 

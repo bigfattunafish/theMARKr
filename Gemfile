@@ -1,3 +1,4 @@
+
 source 'https://rubygems.org'
 
 # This fixes our version of Ruby at 2.0.0 for local and Heroku
@@ -12,6 +13,8 @@ gem 'rails', '3.2.13'
 gem 'pg', :group => :production
 
 group :development, :test do
+  gem 'dotenv-rails'
+
   gem 'sqlite3'             # Heroku doesn't run sqlite3, but Postgres. However, we can use Postgres locally
 
   gem 'pry-rails'           # Causes rails console to open pry

@@ -1,6 +1,8 @@
 class Place < ActiveRecord::Base
   # attr_accessible :title, :mpaa_rating, :plot, :year, :poster
 
+  belongs_to :users
+
   serialize :categories
   serialize :neighborhoods
   serialize :reviews

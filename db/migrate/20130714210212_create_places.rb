@@ -30,6 +30,7 @@ class CreatePlaces < ActiveRecord::Migration
       t.float :latitude
       t.float :longitude
       t.boolean :gmaps
+      t.belongs_to :users
       t.timestamps
     end
   end
