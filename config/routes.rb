@@ -3,6 +3,8 @@ Themarkr::Application.routes.draw do
 
   get '/:user_id' => 'users#index', as: 'user_home'
   get '/:user_id/search' => 'users#search', as: 'search_result'
+  get '/:user_id/:place_id' => 'users#show'
+  post '/:user_id/save' => 'users#save', as: 'save_place'
 
   resources :places
 

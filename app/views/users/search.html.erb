@@ -1,3 +1,47 @@
-<br><br><br>
+<div class="page_wrap">
+  <div class="row-fluid">
+    <div class="span8 offset1">
+      <h1>Looking up "<%= @place_to_search.titleize %>"..</h1>
+    </div>
 
-<%= @response["businesses"][0] %>
+    <div class="span2">
+      <p>Powered by: Yelp</p>
+    </div>
+  </div>
+
+  <% if @response["businesses"].empty? %>
+    <div class="span13 offset1">
+      <h2 class="text-error">Sorry, Yelp wasn't able to find any places for this search. <a href="<%= user_home_path %>">Try again.</a></h2>
+    </div>
+  <% else %>
+    <% @response["businesses"].each do |place| %>
+      <div class="row-fluid">
+        <div class="span10 offset1">
+          <hr>
+          <div class="span2">
+            <img class="img-polaroid" src="<%= place["image_url"] %>">
+          </div>
+
+          <div class="span3">
+            <%= place["name"] %><br>
+            Rating: <img src="<%= place["rating_img_url"] %>">
+            <%= place["review_count"] %> reviews<br>
+            <%= place["categories"].flatten.map{ |category| category.titleize }.uniq.to_sentence(:last_word_connector => ", ") unless place["categories"].nil? %>
+          </div>
+
+          <div class="span4">
+            <p><%= place["location"]["display_address"][2] %></p>
+            <%= place["location"]["display_address"][0] %><br>
+            <%= place["location"]["display_address"][1] %><br>
+            <%= place["location"]["display_address"][3] %><br>
+            <%= place["display_phone"] %><br>
+          </div>
+
+          <div class="span2">
+            <%= button_to( "SAVE THIS PLACE!", save_place_path(yelp_id: place["id"]), class: 'btn btn-success btn-large') %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

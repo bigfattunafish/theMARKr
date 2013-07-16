@@ -1,36 +1,28 @@
 class CreatePlaces < ActiveRecord::Migration
   def up
     create_table :places do |t|
+      t.boolean :is_claimed
+      t.float :rating
+      t.text :mobile_url
       t.text :rating_img_url
-      t.string :country_code
-      t.string :id
-      t.boolean :is_closed
-      t.string :city
-      t.string :mobile_url
       t.integer :review_count
-      t.string :zip
-      t.string :state
-      t.text :rating_img_url_small
-      t.string :address1
-      t.string :address2
-      t.string :address3
-      t.string :phone
-      t.string :state_code
-      t.text :categories
-      t.text :photo_url
-      t.float :distance
       t.string :name
-      t.text :neighborhoods
+      t.text :snippet_image_url
+      t.text :rating_img_url_small
       t.text :url
-      t.string :country
-      t.float :avg_rating
-      t.text :nearby_url
-      t.text :reviews
-      t.text :photo_url_smal
+      t.string :phone
+      t.text :snippet_text
+      t.text :image_url
+      t.text :categories
+      t.string :display_phone
+      t.text :rating_img_url_large
+      t.string :yelp_id
+      t.boolean :is_closed
+      t.text :location
       t.float :latitude
       t.float :longitude
       t.boolean :gmaps
-      t.belongs_to :users
+      t.belongs_to :user
       t.timestamps
     end
   end
