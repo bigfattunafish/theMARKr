@@ -14,14 +14,13 @@
     </div>
   <% else %>
     <% @response["businesses"].each do |place| %>
-      <% @place = place %> <!-- Make it accessible to partials -->
       <div class="row-fluid">
         <div class="span10 offset1">
           <hr>
-          <%= render partial: 'place-img' %>
-          <%= render partial: 'place-info1' %>
-          <%= render partial: 'place-info2' %>
-          <%= render partial: 'place-save' %>
+          <%= render partial: 'place-img', locals: { place: place } %>
+          <%= render partial: 'place-info1', locals: { place: place } %>
+          <%= render partial: 'place-info2', locals: { place: place } %>
+          <%= render partial: 'place-save', locals: { place: place } %>
         </div> <!-- span10 offset1 -->
       </div> <!-- row-fluid -->
     <% end %>

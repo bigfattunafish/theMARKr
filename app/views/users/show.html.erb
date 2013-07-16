@@ -8,9 +8,9 @@
   <div class="row-fluid">
     <div class="span10 offset1">
       <hr>
-      <%= render partial: 'place-img' %>
-      <%= render partial: 'place-info1' %>
-      <%= render partial: 'place-info2' %>
+      <%= render partial: 'place-img', locals: { place: @place} %>
+      <%= render partial: 'place-info1', locals: { place: @place} %>
+      <%= render partial: 'place-info2', locals: { place: @place} %>
 
       <div class="span2">
         Put a map here??
@@ -33,7 +33,7 @@
     <div class="span2 top_margin_push_down">
       <%= button_to "UPDATE", "", class: 'btn' %>
       <%= button_to "SHARE", "", class: 'btn btn-success' %>
-      <%= button_to "DELETE", delete_place_path(place_id: @place.id), class: 'btn btn-danger', method: :delete %>
+      <%= button_to "DELETE", delete_place_path(place_id: @place.id), class: 'btn btn-danger', method: :delete, :confirm => "ARE YOU SURE YOU WANT TO DELETE THIS PLACE?" %>
     </div>
   </div>
 </div>

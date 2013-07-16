@@ -3,7 +3,9 @@ class UsersController < ApplicationController
   def index
     # RENDER GOOGLE MAP
     @places = User.find(params[:user_id]).places
-    @json = @places.to_gmaps4rails
+    @json = @places.to_gmaps4rails do |place, marker|
+      marker.infowindow render_to_string(partial: 'gmapinfo', :locals => { :place => place })
+    end
 
     @user = User.find(params[:user_id])
   end
@@ -66,7 +68,6 @@ class UsersController < ApplicationController
       current_user.places << place_to_save
 
       redirect_to "/#{user_id}/#{place_to_save.id}"
-      # , notice: "Selected place has been successfully saved!"
     end
   end
 

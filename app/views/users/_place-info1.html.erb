@@ -1,6 +1,6 @@
 <div class="span3">
-  <%= @place["name"] %><br>
-  Rating: <img src="<%= @place["rating_img_url"] %>">
-  <%= @place["review_count"] %> reviews<br>
-  <%= @place["categories"].flatten.map{ |category| category.titleize }.uniq.to_sentence(:last_word_connector => ", ") unless @place["categories"].nil? %>
+  <%= place["name"] %><br>
+  Rating: <img src="<%= place["rating_img_url"] %>">
+  <%= place["review_count"] %> reviews<br>
+  <%= place["categories"].flatten.map{ |category| category.titleize }.uniq.to_sentence(:last_word_connector => ", ") unless place["categories"].nil? %>
 </div>
