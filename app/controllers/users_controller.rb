@@ -74,7 +74,7 @@ class UsersController < ApplicationController
     user_id = params[:user_id]
     place_id = params[:place_id]
 
-    @user_place = User.find(user_id).places.find(place_id)
+    @place = User.find(user_id).places.find(place_id)
   end
 
 end

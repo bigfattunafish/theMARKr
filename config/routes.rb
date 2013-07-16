@@ -1,12 +1,12 @@
 Themarkr::Application.routes.draw do
   root :to => 'home#index', as: 'home'
-
   get '/:user_id' => 'users#index', as: 'user_home'
-  get '/:user_id/search' => 'users#search', as: 'search_result'
-  get '/:user_id/:place_id' => 'users#show'
-  post '/:user_id/save' => 'users#save', as: 'save_place'
 
-  resources :places
+  get '/:user_id/search' => 'users#search', as: 'search_result'
+  post '/:user_id/save' => 'users#save', as: 'save_place'
+  delete '/:user_id/delete', to: 'places#delete', as: 'delete_place'
+
+  get '/:user_id/:place_id' => 'users#show'
 
 
   #     places GET    /places(.:format)          places#index

@@ -1,31 +1,39 @@
+<div class="top_margin_push_down">
+  <div class="row-fluid">
+    <div class="span10 offset1">
+      <h1>Your Favorite Place: "<%= @place.name %>"</h1>
+    </div>
+  </div>
 
-<div class="page_wrap">
   <div class="row-fluid">
     <div class="span10 offset1">
       <hr>
-      <div class="span2">
-        <img class="img-polaroid" src="<%= @user_place["image_url"] %>">
-      </div>
-
-      <div class="span3">
-        <%= @user_place["name"] %><br>
-        Rating: <img src="<%= @user_place["rating_img_url"] %>">
-        <%= @user_place["review_count"] %> reviews<br>
-        <%= @user_place["categories"].flatten.map{ |category| category.titleize }.uniq.to_sentence(:last_word_connector => ", ") unless @user_place["categories"].nil? %>
-      </div>
-
-      <div class="span4">
-        <p><%= @user_place["location"]["display_address"][2] %></p>
-        <%= @user_place["location"]["display_address"][0] %><br>
-        <%= @user_place["location"]["display_address"][1] %><br>
-        <%= @user_place["location"]["display_address"][3] %><br>
-        <%= @user_place["display_phone"] %><br>
-      </div>
+      <%= render partial: 'place-img' %>
+      <%= render partial: 'place-info1' %>
+      <%= render partial: 'place-info2' %>
 
       <div class="span2">
-        Update with tags
-        Go back home
+        Put a map here??
       </div>
+
+    </div>
+  </div>
+
+  <div class="row-fluid">
+    <div class="span10 offset1">
+      <hr>
+    </div>
+  </div>
+
+  <div class="row-fluid">
+    <div class="span8 offset1">
+      <h2>Add/Edit Tags or Assign to Your Favorite List</h2>
+    </div>
+
+    <div class="span2 top_margin_push_down">
+      <%= button_to "UPDATE", "", class: 'btn' %>
+      <%= button_to "SHARE", "", class: 'btn btn-success' %>
+      <%= button_to "DELETE", delete_place_path(place_id: @place.id), class: 'btn btn-danger', method: :delete %>
     </div>
   </div>
 </div>

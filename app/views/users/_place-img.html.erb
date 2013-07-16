@@ -1,0 +1,8 @@
+<div class="span2">
+  <% if @place["image_url"].nil? %>
+    <%= image_tag("NotAvailable.jpg", class: "img-polaroid", size: "100x100") %>
+    <!-- <img class="img-polaroid" scr="/images/notavailable.jpg" width="100px" height="100px"> -->
+  <% else %>
+    <%= image_tag(@place["image_url"], class: "img-polaroid") %>
+  <% end %>
+</div>
