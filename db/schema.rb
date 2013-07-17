@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130714233607) do
+ActiveRecord::Schema.define(:version => 20130717053214) do
+
+  create_table "lists", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "lists_places", :id => false, :force => true do |t|
+    t.integer "list_id"
+    t.integer "place_id"
+  end
 
   create_table "places", :force => true do |t|
     t.boolean  "is_claimed"
@@ -32,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20130714233607) do
     t.string   "yelp_id"
     t.boolean  "is_closed"
     t.text     "location"
+    t.text     "tags"
     t.float    "latitude"
     t.float    "longitude"
     t.boolean  "gmaps"

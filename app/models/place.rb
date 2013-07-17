@@ -5,6 +5,7 @@ class Place < ActiveRecord::Base
                   :yelp_id, :is_closed, :location, :tags, :latitude, :longitude, :gmaps, :user
 
   belongs_to :users
+  has_and_belongs_to_many :lists
 
   serialize :categories
   serialize :location
@@ -16,5 +17,3 @@ class Place < ActiveRecord::Base
     "#{location["address"].join(" ")}, #{location["display_address"][-1]}"
   end
 end
-
-
