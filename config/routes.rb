@@ -6,7 +6,7 @@ Themarkr::Application.routes.draw do
   post '/:user_id/save' => 'users#save', as: 'save_place'
   delete '/:user_id/delete', to: 'places#delete', as: 'delete_place'
 
-  get '/:user_id/:place_id' => 'users#show'
+  get '/:user_id/:place_id' => 'users#show', as: 'show_place'
 
 
   #     places GET    /places(.:format)          places#index

@@ -12,7 +12,7 @@ class Place < ActiveRecord::Base
   acts_as_gmappable
 
   def gmaps4rails_address
-    "#{location["address"].last}, #{location["display_address"][3]}"
+    "#{location["display_address"][1]}, #{location["display_address"][-1]}"
   end
 end
 

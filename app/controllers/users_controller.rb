@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     yelp_id = params[:yelp_id]
 
     if User.find(user_id).places.map { |place| place["yelp_id"] == yelp_id }.include?(true)
-      redirect_to 'http://google.com'
+      redirect_to user_home_path, notice: "You already have this place saved. Try again."
     else
       client = Yelp::Client.new
       request = Yelp::V2::Business::Request::Id.new(

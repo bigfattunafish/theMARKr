@@ -1,6 +1,14 @@
 <strong><%= place.name %></strong>
-<p><img src="<%= place.rating_img_url %>"> <%= place.review_count %> reviews</p>
+<p>
+  <img src="<%= place.rating_img_url %>">
+  <span class="small_font"><%= place.review_count %> reviews</span>
+</p>
 
+<div class="small_font"><%= place.categories.flatten.map{ |category| category.titleize }.uniq.to_sentence(:last_word_connector => ", ") unless place["categories"].nil? %></div>
 
-
-<div>Edit | Delete | Share</div>
+<div class="small_font">
+  <%= link_to "Edit", "/#{params[:user_id]}/#{place.id}" %> | <!-- ASK IF I CAN PASS AS PARAMETERS -->
+  <%= link_to "Delete", delete_place_path(place_id: place.id), method: :delete,
+    :confirm => "ARE YOU SURE YOU WANT TO DELETE THIS PLACE?" %> |
+  [Share]
+</div>

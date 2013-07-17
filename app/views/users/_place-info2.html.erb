@@ -1,7 +1,9 @@
 <div class="span4">
-  <p><%= place["location"]["display_address"][2] %></p>
-  <%= place["location"]["display_address"][0] %><br>
-  <%= place["location"]["display_address"][1] %><br>
-  <%= place["location"]["display_address"][3] %><br>
+  <p><%= place["location"]["neighborhoods"].to_sentence(words_connector: ", ", last_word_connector: ", ", two_words_connector: ", ") unless place["location"]["neighborhoods"].nil? %></p>
+  <%= place["location"]["address"].join(", ").to_s %><br>
+  <% unless place["location"]["address"].join(", ").to_s == place["location"]["display_address"][-3] %>
+    <%= place["location"]["display_address"][-3] %><br>
+  <% end %>
+  <%= place["location"]["display_address"][-1] %><br>
   <%= place["display_phone"] %><br>
 </div>

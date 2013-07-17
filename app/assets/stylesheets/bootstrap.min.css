@@ -37,3 +37,24 @@
   margin: 60px 0;
 }
 
+.small_font {
+  font-size: 80%;
+}
+
+.right_align {
+  text-align: right;
+}
+
+.dashboard_box {
+  border: 2px solid lightgrey;
+  padding: 10px;
+  border-radius: 5px;
+  height: 75px;
+}
+
+.dashboard_map {
+  margin: 10px 0;
+}
+
+
+
