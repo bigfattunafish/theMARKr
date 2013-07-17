@@ -1,5 +1,26 @@
+<% counter = 0 %>
+<% @places.each do |place| %>
+  <% counter += 1 %>
+  <div class="row-fluid list_margin_bump">
+      <div class="span1">
+        <% if place["image_url"].nil? %>
+          <%= image_tag("NotAvailable.jpg", class: "img-polaroid", size: "50x50") %>
+        <% else %>
+          <%= image_tag(place["image_url"], class: "img-polaroid", size: "50x50") %>
+        <% end %>
+      </div>
 
-<% 5.times do |x| %>
-  <h2>Heading</h2>
-  <p>Donec id elit non</p>
+      <div class="span4">
+        <div class="big_bright_font">
+          <%= counter %>.
+          <%= place["name"] %>
+        </div>
+        <img src="<%= place["rating_img_url"] %>">
+        (<%= place["rating"] %>) |
+        <%= place["review_count"] %> reviews
+      </div>
+
+      <%= place["categories"].flatten.map{ |category| category.titleize }.uniq.to_sentence(:last_word_connector => ", ") unless place["categories"].nil? %>
+
+  </div>
 <% end %>

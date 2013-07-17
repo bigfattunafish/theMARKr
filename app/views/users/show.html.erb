@@ -12,8 +12,8 @@
       <%= render partial: 'place-info1', locals: { place: @place} %>
       <%= render partial: 'place-info2', locals: { place: @place} %>
 
-      <div class="span2">
-        Put a map here??
+      <div class="span2 right_align">
+        put something here
       </div>
 
     </div>
@@ -26,14 +26,29 @@
   </div>
 
   <div class="row-fluid">
-    <div class="span8 offset1">
-      <h2>Add/Edit Tags or Assign to Your Favorite List</h2>
-    </div>
-
-    <div class="span2 top_margin_push_down">
-      <%= button_to "UPDATE", "", class: 'btn' %>
-      <%= button_to "SHARE", "", class: 'btn btn-success' %>
-      <%= button_to "DELETE", delete_place_path(place_id: @place.id), class: 'btn btn-danger', method: :delete, :confirm => "ARE YOU SURE YOU WANT TO DELETE THIS PLACE?" %>
+    <div class="span10 offset1">
+      <h2>Edit the Details of This Place:</h2>
     </div>
   </div>
+
+  <div class="row-fluid">
+    <div class="span3 offset1">
+      <h3>Assign to Favorite List</h3>
+    </div>
+
+    <div class="span4 offset1">
+      <h3>Add or Edit Tags</h3>
+      <form method="post" action="">
+        <textarea name="tags" cols="100" rows="10">Enter your comments here...</textarea><br>
+        <button class="btn btn-primary">UPDATE</button>
+      </form>
+    </div>
+
+    <div class="span2 right_align">
+      <%= button_to "<- BACK", user_home_path, class: 'btn', method: :get %>
+      <%= button_to "<3 SHARE", "", class: 'btn btn-success' %>
+      <%= button_to "X DELETE", delete_place_path(place_id: @place.id), class: 'btn btn-danger', method: :delete, :confirm => "ARE YOU SURE YOU WANT TO DELETE THIS PLACE?" %>
+    </div>
+  </div>
+
 </div>

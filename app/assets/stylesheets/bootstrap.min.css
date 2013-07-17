@@ -41,8 +41,18 @@
   font-size: 80%;
 }
 
+.big_bright_font {
+  font-weight: bold;
+  font-size: 150%;
+  color: #2890D1;
+}
+
 .right_align {
   text-align: right;
+}
+
+.center_align {
+  text-align: center;
 }
 
 .dashboard_box {
@@ -56,5 +66,7 @@
   margin: 10px 0;
 }
 
-
+.list_margin_bump{
+  margin: 10px 0;
+}
 
