@@ -1,20 +1,24 @@
 Themarkr::Application.routes.draw do
-  get "sessions/new"
+  # get "sessions/new"
 
   root :to => 'home#index', as: 'home'
-  get "/signup" => "sessions#sign_up", as: "sign_up"
+  get "/signup" => "sessions#sign_up", as: "sign_up" # SHOULD BE IN USER CONTROLLER
+  post "/signup" => "sessions#create_user", as: "create_user"
+  get "/login"  => "sessions#new", as: "log_in"
+  post "/login"  => "sessions#create", as: "open_session"
+  get "/logout" => "sessions#destroy", as: "log_out"
 
   get '/:user_id' => 'users#index', as: 'user_home'
 
   get '/:user_id/search' => 'users#search', as: 'search_result'
   post '/:user_id/save' => 'users#save', as: 'save_place'
-  delete '/:user_id/delete', to: 'places#delete', as: 'delete_place'
+  delete '/:user_id/delete' => 'places#delete', as: 'delete_place'
 
   get '/:user_id/:place_id' => 'users#show', as: 'show_place'
   put '/:user_id/:place_id/assign-to-list' => 'users#assign_to_list', as: 'assign_to_list'
   put '/:user_id/:place_id/edit-tags' => 'users#edit_tags', as: 'edit_tags'
 
-  post '/:user_id/lists/create', to: 'lists#create', as: 'create_list'
+  post '/:user_id/lists/create' => 'lists#create', as: 'create_list'
 
 
   #     places GET    /places(.:format)          places#index

@@ -1,7 +1,11 @@
 class User < ActiveRecord::Base
-  attr_accessible :username
-
   has_many :places
+
+  attr_accessible :username, :email, :password, :password_confirmation
+
+  # This might not be in the database
+  attr_accessor :password
+  before_save :encrypt_password
 
   validates :username, presence: true
   validates :username, uniqueness: true
