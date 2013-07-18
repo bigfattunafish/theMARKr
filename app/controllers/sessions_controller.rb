@@ -3,9 +3,9 @@ class SessionsController < ApplicationController
   def create_user
     @new_user = User.new(params[:user])
     if @new_user.save
-      redirect_to user_home_path
+      redirect_to "/#{@new_user.id}"
     else
-      render "sessions/sign_up"
+      render "sign_up"
     end
   end
 

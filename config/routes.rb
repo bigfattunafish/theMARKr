@@ -2,7 +2,7 @@ Themarkr::Application.routes.draw do
   # get "sessions/new"
 
   root :to => 'home#index', as: 'home'
-  get "/signup" => "sessions#sign_up", as: "sign_up" # SHOULD BE IN USER CONTROLLER
+  get "/signup" => "sessions#sign_up", as: "sign_up"
   post "/signup" => "sessions#create_user", as: "create_user"
   get "/login"  => "sessions#new", as: "log_in"
   post "/login"  => "sessions#create", as: "open_session"

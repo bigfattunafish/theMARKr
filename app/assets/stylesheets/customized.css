@@ -68,17 +68,11 @@
   padding: 0 15px;
 }
 
-/*.landing {
-    background-image: url('landing1.jpg');
-    background-repeat:no-repeat;
-    background-attachment:fixed;
-    background-position:center;
+/*.homebg {
+  background: url(http://watonwallpaper.com/wp-content/uploads/2013/03/Kate-Upton-Pict-e1364189837191.jpg);
+  /*background-opacity: 0.5;*/
+  background-size: cover;
+  min-width: 100%;
+  min-height: 100%;
 }*/
 
-.signinblock {
-  margin: 50px auto 50px auto;
-  /*padding-top: 700px;*/
-  height: 700px;
-  background: grey;
-  /*background: url('/landing1.jpg') top center no-repeat;*/
-}

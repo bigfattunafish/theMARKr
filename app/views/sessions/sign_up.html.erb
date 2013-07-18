@@ -1,6 +1,6 @@
 <h1>Sign Up!</h1>
 <h2>You are only clicks away from saving and discovering your favorite places</h2>
-<%= form_for @new_user, url: sign_up_path do |f| %>
+<%= form_for @new_user, url: create_user_path do |f| %>
   <% if @new_user.errors.any? %>
     <div class="error_messages">
       <h1>Sorry, bad inputs..</h1>
