@@ -1,5 +1,9 @@
 Themarkr::Application.routes.draw do
+  get "sessions/new"
+
   root :to => 'home#index', as: 'home'
+  get "/signup" => "sessions#sign_up", as: "sign_up"
+
   get '/:user_id' => 'users#index', as: 'user_home'
 
   get '/:user_id/search' => 'users#search', as: 'search_result'
