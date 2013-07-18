@@ -1,6 +1,6 @@
 <h1>Sign Up</h1>
 
-<%= form_for @user do |f| %>
+<%= form_for @user, url: sign_up_path do |f| %>
   <% if @user.errors.any? %>
     <div class="error_messages">
       <h2>Sorry, bad inputs..</h2>
@@ -18,6 +18,6 @@
   <%= f.password_field :password %>
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation%>
-  <%= f.submit %>
+  <%= f.submit "SIGN UP! :)", class: "btn btn-primary" %>
 
 <% end %>
