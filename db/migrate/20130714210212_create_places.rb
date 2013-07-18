@@ -20,6 +20,7 @@ class CreatePlaces < ActiveRecord::Migration
       t.boolean :is_closed
       t.text :location
       t.text :tags
+      t.text :tags_display
       t.float :latitude
       t.float :longitude
       t.boolean :gmaps

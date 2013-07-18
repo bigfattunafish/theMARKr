@@ -7,6 +7,10 @@ Themarkr::Application.routes.draw do
   delete '/:user_id/delete', to: 'places#delete', as: 'delete_place'
 
   get '/:user_id/:place_id' => 'users#show', as: 'show_place'
+  put '/:user_id/:place_id/assign-to-list' => 'users#assign_to_list', as: 'assign_to_list'
+  put '/:user_id/:place_id/edit-tags' => 'users#edit_tags', as: 'edit_tags'
+
+  post '/:user_id/lists/create', to: 'lists#create', as: 'create_list'
 
 
   #     places GET    /places(.:format)          places#index

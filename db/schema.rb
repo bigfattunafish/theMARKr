@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(:version => 20130717053214) do
 
   create_table "lists", :force => true do |t|
     t.string   "name"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -44,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20130717053214) do
     t.boolean  "is_closed"
     t.text     "location"
     t.text     "tags"
+    t.text     "tags_display"
     t.float    "latitude"
     t.float    "longitude"
     t.boolean  "gmaps"

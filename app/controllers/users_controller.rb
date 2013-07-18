@@ -42,6 +42,8 @@ class UsersController < ApplicationController
         token_secret: ENV['TOKEN_SECRET']
       )
       response = client.search(request)
+      categories_array = response["categories"].flatten.map{ |category| category.titleize }.uniq.to_sentence(words_connector: ", ", last_word_connector: ", ", two_words_connector: ", ").gsub(" ", "").split(",") unless response["categories"].nil?
+      default_initials_tags = Array.new(categories_array)
 
       place_to_save = Place.create(
         is_claimed: response["is_claimed"],
@@ -61,13 +63,15 @@ class UsersController < ApplicationController
         rating_img_url_large: response["rating_img_url_large"],
         yelp_id: response["id"],
         is_closed: response["is_closed"],
-        location: response["location"]
+        location: response["location"],
+        tags: default_initials_tags
       )
 
       current_user = User.find(params[:user_id])
       current_user.places << place_to_save
 
-      redirect_to "/#{user_id}/#{place_to_save.id}"
+      redirect_to "/#{user_id}/#{place_to_save.id}",
+        notice: "You've successfully saved this place!"
     end
   end
 
@@ -76,8 +80,31 @@ class UsersController < ApplicationController
     place_id = params[:place_id]
 
     @place = User.find(user_id).places.find(place_id)
+    @list = List.new #DUMMY NEW LIST IN CASE A USER WANTS TO CREATE A NEW ONE SO THAT INSTANCE VAR IS AVAILABLE
+  end
+
+  def assign_to_list
+    place_to_be_assigned = Place.find(params[:place_id])
+    place_to_be_assigned.update_attributes(params[:place])
+
+    redirect_to show_place_path,
+      notice: "You've successfully updated the list assignment of this place!"
+  end
+
+  def edit_tags
+    place_to_be_updated = Place.find(params[:place_id])
+
+    place_to_be_updated.tags = params
+
+    if @spell.save
+      redirect_to @spell
+    else
+      render :new
+    end
   end
 
 end
+
+
 
 

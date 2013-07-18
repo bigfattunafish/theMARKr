@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  # attr_accessible :title, :mpaa_rating, :plot, :year, :poster
+  attr_accessible :name
 
   has_many :places
 
