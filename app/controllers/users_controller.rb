@@ -42,7 +42,9 @@ class UsersController < ApplicationController
         token_secret: ENV['TOKEN_SECRET']
       )
       response = client.search(request)
-      categories_array = response["categories"].flatten.map{ |category| category.titleize }.uniq.to_sentence(words_connector: ", ", last_word_connector: ", ", two_words_connector: ", ").gsub(" ", "").split(",") unless response["categories"].nil?
+      categories_array = response["categories"].flatten.map{ |category| category.downcase.titleize }.uniq.to_sentence(words_connector: ", ", last_word_connector: ", ", two_words_connector: ", ").gsub(" ", "").split(",") unless response["categories"].nil?
+      default_tags_display = categories_array.to_s.gsub('"', '').gsub('[', '').gsub(']', '')
+      # default_tags_display = categories_array.map { |n| n.to_sym }
       default_initials_tags = Array.new(categories_array)
 
       place_to_save = Place.create(
@@ -64,7 +66,8 @@ class UsersController < ApplicationController
         yelp_id: response["id"],
         is_closed: response["is_closed"],
         location: response["location"],
-        tags: default_initials_tags
+        tags: default_initials_tags,
+        tags_display: default_tags_display
       )
 
       current_user = User.find(params[:user_id])
@@ -93,14 +96,17 @@ class UsersController < ApplicationController
 
   def edit_tags
     place_to_be_updated = Place.find(params[:place_id])
+    inputted_tags_display = params[:place][:tags_display]
+    new_tags_display = inputted_tags_display.gsub(',', '').split(" ").map { |tag| tag.downcase.titleize }.uniq.to_s.gsub('"', '').gsub('[', '').gsub(']', '')
+    new_tags = inputted_tags_display.gsub(',', '').split(" ").map { |tag| tag.downcase.titleize }.uniq
 
-    place_to_be_updated.tags = params
+    place = Place.find(params[:place_id])
+    place.tags = new_tags
+    place.tags_display = new_tags_display
+    place.save
 
-    if @spell.save
-      redirect_to @spell
-    else
-      render :new
-    end
+    redirect_to show_place_path,
+      notice: "You've successfully updated the tags of this place!"
   end
 
 end

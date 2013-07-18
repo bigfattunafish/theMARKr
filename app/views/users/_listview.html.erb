@@ -13,7 +13,7 @@
       <div class="span4">
         <div class="big_bright_font">
           <%= counter %>.
-          <%= place["name"] %>
+          <%= link_to "#{place.name}", "/#{params[:user_id]}/#{place.id}"  %>
         </div>
         <img src="<%= place["rating_img_url"] %>">
         (<%= place["rating"] %>) |

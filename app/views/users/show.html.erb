@@ -1,7 +1,10 @@
 <div class="top_margin_push_down">
   <div class="row-fluid">
-    <div class="span10 offset1">
+    <div class="span8 offset1">
       <h1>Your Favorite Place: "<%= @place.name %>"</h1>
+    </div>
+    <div class="span2 right_align">
+      <%= button_to "<- BACK TO LIST", user_home_path, class: 'btn btn-inverse', method: :get %>
     </div>
   </div>
 
@@ -13,7 +16,7 @@
       <%= render partial: 'place-info2', locals: { place: @place} %>
 
       <div class="span2 right_align">
-        <p><b>Tags</b>: <%= @place.tags ? @place.tags.to_s : "None"  %></p>
+        <p><b>Tags</b>: <%= @place.tags ? @place.tags_display : "None"  %></p>
       </div>
 
     </div>
@@ -68,13 +71,13 @@
       <h3>Add or Edit Tags</h3>
       <%= form_for @place, url: edit_tags_path, method: :put do |f| %>
         <p class="muted">Enter relevant tags seperated by <em>comma or space</em>:</p>
-        <%= f.text_area :tags, size: "60x10" %><br>
+        <%= f.text_area :tags_display, size: "60x10" %><br>
         <%= f.submit "UPDATE", class: "btn btn-primary" %>
       <% end %>
     </div>
 
     <div class="span2 right_align">
-      <%= button_to "<- BACK TO LIST", user_home_path, class: 'btn', method: :get %>
+      <%= button_to "CHECK YELP", "#{@place.url}", class: 'btn', method: :get %>
       <%= button_to "<3 SHARE", "", class: 'btn btn-success' %>
       <%= button_to "X DELETE", delete_place_path(place_id: @place.id), class: 'btn btn-danger', method: :delete, :confirm => "ARE YOU SURE YOU WANT TO DELETE THIS PLACE?" %>
     </div>
