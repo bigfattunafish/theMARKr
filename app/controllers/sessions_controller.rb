@@ -18,13 +18,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    # The following returns a user
-    user = User.authenticate(params[:email], params[:password])
-    if user
-      # This is if login worked
-      # Stores the user_id in a cookie!!!!!! This is your wristband for the club
-      session[:user_id] = user.id
-      redirect_to root_url, notice: "Logged in!!!"
+    logged_in_user = User.authenticate(params[:email], params[:password])
+    if logged_in_user
+      session[:user_id] = logged_in_user.id
+      redirect_to loading_path
     else
       # This is if login didn't work
       flash.now.alert = "Invalid email or password"
@@ -32,8 +29,17 @@ class SessionsController < ApplicationController
     end
   end
 
-
-  def destroy
+  def loading
+    sleep(3)
+    redirect_to "/#{@current_user}"
   end
 
+
+  def destroy
+    session[:user_id] = nil
+    redirect_to goodbye_path
+  end
+
+  def goodbye
+  end
 end

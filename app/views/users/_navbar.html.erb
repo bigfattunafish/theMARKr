@@ -2,21 +2,22 @@
   <div class="navbar-inner">
     <a class="brand" href="#">theMARKr</a>
     <ul class="nav">
-      <li class="active"><a href="#">Dashboard</a></li>
+      <li><a href="/<%= params[:user_id] %>">Dashboard</a></li>
       <li class="divider-vertical"></li>
       <li><a href="#">My List</a></li>
       <li class="divider-vertical"></li>
       <li><a href="#">Link</a></li>
       <li class="divider-vertical"></li>
       <p class="navbar-text pull-right">
-        Log-out :: <a href="#" class="navbar-link">Username</a>
+      <a href="/logout">Log-out</a> :: <%= @current_user.username %>
       </p>
     </ul>
 
+
     <form class="navbar-form pull-right">
-    <form action="/<%= params[:user_id] %>/search" method="get" class="navbar-form pull-right">
-      <input type="text" name="place_name" class="span3" placeholder="Search & Add New Place Here">
-      <button type="submit" class="btn btn-primary">Search</button>
-    </form>
+      <form action="/<%= @current_user.id %>/search" method="get" class="navbar-form pull-right">
+        <input type="text" name="place_name" class="span3" placeholder="Search & Add New Place Here">
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
   </div>
 </div>
