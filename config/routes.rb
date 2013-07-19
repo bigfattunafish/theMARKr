@@ -13,8 +13,9 @@ Themarkr::Application.routes.draw do
   get "/goodbye" => "sessions#goodbye", as: "goodbye"
   get "/loading" => "sessions#loading", as: "loading"
 
+  get '/:user_id/bylist/:list_id' => 'users#by_list', as: 'by_list'
+  put '/:user_id/bylist/:list_id' => 'lists#edit_list', as: 'edit_list'
   get '/:user_id' => 'users#index', as: 'user_home'
-
   get '/:user_id/search' => 'users#search', as: 'search_result'
   post '/:user_id/save' => 'users#save', as: 'save_place'
   delete '/:user_id/delete' => 'places#delete', as: 'delete_place'
@@ -24,6 +25,9 @@ Themarkr::Application.routes.draw do
   put '/:user_id/:place_id/edit-tags' => 'users#edit_tags', as: 'edit_tags'
 
   post '/:user_id/lists/create' => 'lists#create', as: 'create_list'
+  delete '/:user_id/lists/delete' => 'lists#delete', as: 'delete_list'
+
+
 
 
   #     places GET    /places(.:format)          places#index

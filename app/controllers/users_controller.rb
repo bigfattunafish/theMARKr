@@ -10,6 +10,16 @@ class UsersController < ApplicationController
     @user = User.find(params[:user_id])
   end
 
+  def by_list
+    # RENDER GOOGLE MAP
+    @places = User.find(@current_user.id).lists.find(params[:list_id]).places
+    @list = List.find(params[:list_id])
+    @json = @places.to_gmaps4rails do |place, marker|
+      marker.infowindow render_to_string(partial: 'gmapinfo', :locals => { :place => place })
+    end
+  end
+
+
   def search
     @place_to_search = params[:place_name]
     user_zipcode = User.find(@current_user.id).zipcode

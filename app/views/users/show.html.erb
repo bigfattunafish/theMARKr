@@ -36,7 +36,7 @@
 <div class="row-fluid">
   <div class="span3 offset1">
     <h3>Assign to Favorite List</h3>
-    <% if List.all.count == 0 %>
+    <% if User.find(@current_user.id).lists.all.count == 0 %>
       <p>You don't have any favorite list. Make a new one here!</p>
       <%= form_for @list, url: create_list_path, method: :post do |f| %>
         <%= f.text_field :name, placeholder: "Enter name of your new favorite list", class: "input-xlarge" %><br/>
@@ -47,13 +47,14 @@
     <% else %>
       <%= form_for @place, url: assign_to_list_path, method: :put do |f| %>
         <p class="muted">Check the lists you want to assign to:</p>
-        <% List.all.each do |list| %>
+        <% User.find(@current_user.id).lists.all.each do |list| %>
           <div class="row-fluid">
           <%= hidden_field_tag "place[list_ids][]", nil %>
           <%= check_box_tag "place[list_ids][]", list.id, @place.lists.include?(list) %>
-          <%= label_tag list.name %>
+          <%= label_tag list.name, nil, class: "checkbox inline" %>
           </div>
         <% end %>
+        <br>
         <%= f.submit "ASSIGN", class: 'btn btn-primary' %>
       <% end %>
       <p class="muted">Or create a new list to assign this place to:</p>

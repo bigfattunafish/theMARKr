@@ -16,4 +16,20 @@ class ListsController < ApplicationController
     end
   end
 
+  def edit_list
+    list_to_update = List.find(params["list_id"])
+    list_to_update.update_attributes(params["list"])
+
+    redirect_to "/#{params["user_id"]}/bylist/#{params["list_id"]}",
+      notice: "You've successfully updated the list!"
+  end
+
+
+  def delete
+    list_to_delete = User.find(params[:user_id]).lists.find(params[:list_id])
+    list_to_delete.destroy
+
+    redirect_to user_home_path
+  end
+
 end

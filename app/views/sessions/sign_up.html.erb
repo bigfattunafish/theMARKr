@@ -1,24 +1,28 @@
-<h1>Sign Up!</h1>
-<h2>You are only clicks away from saving and discovering your favorite places</h2>
-<%= form_for @new_user, url: create_user_path do |f| %>
-  <% if @new_user.errors.any? %>
-    <div class="error_messages">
-      <h1>Sorry, bad inputs..</h1>
-      <ul>
-        <% @new_user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+
+
+<div class="container check_in">
+  <h1>Sign Up</h1>
+  <%= form_for @new_user, url: create_user_path do |f| %>
+    <% if @new_user.errors.any? %>
+      <div class="error_messages">
+        <h1>Sorry, bad inputs..</h1>
+        <ul>
+          <% @new_user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= f.text_field :username, placeholder: "Enter Your Username" %><br>
+      <%= f.text_field :email, placeholder: "Enter Your Email" %><br>
+      <%= f.password_field :password, placeholder: "Enter Your Password" %><br>
+      <%= f.password_field :password_confirmation, placeholder: "Confirm Your Paassword" %><br>
+      <%= f.text_field :zipcode, placeholder: "5-digit format e.g. 10011" %><br>
+      <%= f.submit "SIGN UP! :)", class: "btn btn-primary" %>
     </div>
+
   <% end %>
+</div>
 
-  <div>
-    <%= f.text_field :username, placeholder: "Enter Your Username" %><br>
-    <%= f.text_field :email, placeholder: "Enter Your Email" %><br>
-    <%= f.password_field :password, placeholder: "Enter Your Password" %><br>
-    <%= f.password_field :password_confirmation, placeholder: "Confirm Your Paassword" %><br>
-    <%= f.text_field :zipcode, placeholder: "5-digit format e.g. 10011" %><br>
-    <%= f.submit "SIGN UP! :)", class: "btn btn-primary" %>
-  </div>
-
-<% end %>

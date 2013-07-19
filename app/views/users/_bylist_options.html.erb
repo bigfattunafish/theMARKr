@@ -1,0 +1,28 @@
+<% if places != User.find(@current_user.id).places.all %>
+  <li class="nav-header"></li>
+  <li class="nav-header">List Options</li>
+  <li>
+    <% @this_list = List.find(params[:list_id]) %>
+
+    <%= form_for @this_list, url: edit_list_path, method: :put do |f| %>
+      <span class="kinda_small_font muted"><em>Edit list name:</em></span>
+      <%= f.text_field :name, value: "#{@this_list.name}", class: "input-block-level" %><br>
+      <span class="kinda_small_font muted"><em>Edit places assigned:</em></span>
+      <% User.find(@current_user.id).places.all.each do |place| %>
+        <div class="row-fluid">
+        <%= hidden_field_tag "list[place_ids][]", nil %>
+        <%= check_box_tag "list[place_ids][]", place.id, @this_list.places.include?(place) %>
+        <%= label_tag place.name, nil, class: "small_font muted checkbox inline"  %>
+        </div>
+      <% end %>
+      <br>
+      <%= f.submit "UPDATE", class: 'btn btn-primary btn-mini' %>
+    <% end %>
+    <%= button_to "DELETE", delete_list_path(list_id: @this_list.id), method: :delete,
+      confirm: "ARE YOU SURE YOU WANT TO DELETE THIS LIST?",
+      class: 'btn btn-danger btn-mini' %>
+
+    <%= button_to "SHOW ALL AGAIN", "/#{@current_user.id}", method: :get,
+      class: 'btn btn-inverse btn-mini' %>
+  </li>
+<% end %>
