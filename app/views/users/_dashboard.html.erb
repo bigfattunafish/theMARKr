@@ -1,56 +1,46 @@
-<div class="top_margin_push_down"
-  <div class="container-fluid">
-    <div class="row-fluid">
-      <div class="span2">
-        <div class="sidebar-nav">
-          <ul class="nav nav-list">
-            <li class="nav-header">Add More Places</li>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <div class="sidebar-nav">
+        <ul class="nav nav-list">
+          <li class="nav-header">Add More Places</li>
 
-            <li class="nav-header">Sidebar</li>
-            <li class="active"><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li class="nav-header">Sidebar</li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li class="nav-header">Sidebar</li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-          </ul>
-        </div><!--/.well -->
-      </div><!--/span-->
+          <li class="nav-header">Sidebar</li>
+          <li class="active"><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li class="nav-header">Sidebar</li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li class="nav-header">Sidebar</li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+        </ul>
+      </div><!--/.well -->
+    </div><!--/span-->
 
-      <div class="span5 dashboard_box">
-        [Map filters here]
+    <div class="span9 dashboard_box">
+      [Map filters here]
+    </div>
+
+    <div class="span10">
+      <div class="dashboard_map">
+        <%= gmaps4rails(@json) %>
       </div>
 
-      <div class="span4 dashboard_box">
-        [Add new places here]
-        <form action="/<%= @user.id %>/search" method="get" class="form-search">
-          <input type="text" name="place_name" placeholder="Enter a name of a place" class="input-xlarge">
-          <button class="btn btn-primary btn-small">Search!</button>
-        </form>
+      <div class="row-fluid">
+        <div class="span10">
+          <h2>List of all places currently shown: (Total of <%= @places.count %> places)</h2>
+        </div>
       </div>
 
-      <div class="span10">
-        <div class="dashboard_map">
-          <%= gmaps4rails(@json) %>
-        </div>
+      <%= render 'listview', locals: { places: @places } %>
 
-        <div class="row-fluid">
-          <div class="span10">
-            <h2>List of all places currently shown: (Total of <%= @places.count %> places)</h2>
-          </div>
-        </div>
+    </div><!--/span-->
+  </div><!--/row-->
 
-        <%= render 'listview', locals: { places: @places } %>
-
-      </div><!--/span-->
-    </div><!--/row-->
-
-    <hr>
-  </div>
+  <hr>
 </div>

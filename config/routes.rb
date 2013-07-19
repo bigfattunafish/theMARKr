@@ -8,6 +8,7 @@ Themarkr::Application.routes.draw do
   post "/login"  => "sessions#create", as: "open_session"
   get "/logout" => "sessions#destroy", as: "log_out"
   get "/goodbye" => "sessions#goodbye", as: "goodbye"
+  get "/loading" => "sessions#loading", as: "loading"
 
   get '/:user_id' => 'users#index', as: 'user_home'
 

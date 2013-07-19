@@ -1,4 +1,4 @@
-<div class="navbar">
+<div class="navbar navbar-inverse">
   <div class="navbar-inner">
     <a class="brand" href="#">theMARKr</a>
     <ul class="nav">
@@ -13,8 +13,6 @@
       </p>
     </ul>
 
-
-    <form class="navbar-form pull-right">
       <form action="/<%= @current_user.id %>/search" method="get" class="navbar-form pull-right">
         <input type="text" name="place_name" class="span3" placeholder="Search & Add New Place Here">
         <button type="submit" class="btn btn-primary">Search</button>

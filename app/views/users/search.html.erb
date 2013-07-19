@@ -1,28 +1,26 @@
-<div class="top_margin_push_down">
-  <div class="row-fluid">
-    <div class="span8 offset1">
-      <h1>Looking up "<%= @place_to_search.titleize %>"..</h1>
-    </div>
-    <div class="span2 right_align">
-      <p>Powered by: <%= image_tag("yelp_logo.png", size: "75x75") %></p>
-    </div>
+<div class="row-fluid">
+  <div class="span8 offset1">
+    <h1>Looking up "<%= @place_to_search.titleize %>"..</h1>
   </div>
-
-  <% if @response["businesses"].empty? %>
-    <div class="span13 offset1">
-      <h2 class="text-error">Sorry, Yelp wasn't able to find any places for this search. <a href="<%= user_home_path %>">Try again.</a></h2>
-    </div>
-  <% else %>
-    <% @response["businesses"].each do |place| %>
-      <div class="row-fluid">
-        <div class="span10 offset1">
-          <hr>
-          <%= render partial: 'place-img', locals: { place: place } %>
-          <%= render partial: 'place-info1', locals: { place: place } %>
-          <%= render partial: 'place-info2', locals: { place: place } %>
-          <%= render partial: 'place-save', locals: { place: place } %>
-        </div> <!-- span10 offset1 -->
-      </div> <!-- row-fluid -->
-    <% end %>
-  <% end %>
+  <div class="span2 right_align">
+    <p>Powered by: <%= image_tag("yelp_logo.png", size: "75x75") %></p>
+  </div>
 </div>
+
+<% if @response["businesses"].empty? %>
+  <div class="span13 offset1">
+    <h2 class="text-error">Sorry, Yelp wasn't able to find any places for this search. <a href="<%= user_home_path %>">Try again.</a></h2>
+  </div>
+<% else %>
+  <% @response["businesses"].each do |place| %>
+    <div class="row-fluid">
+      <div class="span10 offset1">
+        <hr>
+        <%= render partial: 'place-img', locals: { place: place } %>
+        <%= render partial: 'place-info1', locals: { place: place } %>
+        <%= render partial: 'place-info2', locals: { place: place } %>
+        <%= render partial: 'place-save', locals: { place: place } %>
+      </div> <!-- span10 offset1 -->
+    </div> <!-- row-fluid -->
+  <% end %>
+<% end %>

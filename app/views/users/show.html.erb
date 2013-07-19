@@ -1,88 +1,86 @@
-<div class="top_margin_push_down">
-  <div class="row-fluid">
-    <div class="span8 offset1">
-      <h1>Your Favorite Place: "<%= @place.name %>"</h1>
-    </div>
-    <div class="span2 right_align">
-      <%= button_to "<- BACK TO LIST", user_home_path, class: 'btn btn-inverse', method: :get %>
-    </div>
+<div class="row-fluid">
+  <div class="span8 offset1">
+    <h1>Your Favorite Place: "<%= @place.name %>"</h1>
   </div>
-
-  <div class="row-fluid">
-    <div class="span10 offset1">
-      <hr>
-      <%= render partial: 'place-img', locals: { place: @place} %>
-      <%= render partial: 'place-info1', locals: { place: @place} %>
-      <%= render partial: 'place-info2', locals: { place: @place} %>
-
-      <div class="span2 right_align">
-        <p><b>Tags</b>: <%= @place.tags ? @place.tags_display : "None"  %></p>
-      </div>
-
-    </div>
+  <div class="span2 right_align">
+    <%= button_to "<- BACK TO LIST", user_home_path, class: 'btn btn-inverse', method: :get %>
   </div>
-
-  <div class="row-fluid">
-    <div class="span10 offset1">
-      <hr>
-    </div>
-  </div>
-
-  <div class="row-fluid">
-    <div class="span10 offset1">
-      <h2>Edit the Details of This Place:</h2>
-    </div>
-  </div>
-
-  <div class="row-fluid">
-    <div class="span3 offset1">
-      <h3>Assign to Favorite List</h3>
-      <% if List.all.count == 0 %>
-        <p>You don't have any favorite list. Make a new one here!</p>
-        <%= form_for @list, url: create_list_path, method: :post do |f| %>
-          <%= f.text_field :name, placeholder: "Enter name of your new favorite list", class: "input-xlarge" %><br/>
-          <%= f.hidden_field :user_id, value: params[:user_id] %>
-          <%= f.hidden_field :place_id, value: params[:place_id] %>
-          <%= f.submit "CREATE", class: "btn btn-info" %>
-        <% end %>
-      <% else %>
-        <%= form_for @place, url: assign_to_list_path, method: :put do |f| %>
-          <p class="muted">Check the lists you want to assign to:</p>
-          <% List.all.each do |list| %>
-            <div class="row-fluid">
-            <%= hidden_field_tag "place[list_ids][]", nil %>
-            <%= check_box_tag "place[list_ids][]", list.id, @place.lists.include?(list) %>
-            <%= label_tag list.name %>
-            </div>
-          <% end %>
-          <%= f.submit "ASSIGN", class: 'btn btn-primary' %>
-        <% end %>
-        <p class="muted">Or create a new list to assign this place to:</p>
-        <%= form_for @list, url: create_list_path, method: :post do |f| %>
-          <%= f.text_field :name, placeholder: "Enter name of your new favorite list", class: "input-xlarge" %><br/>
-          <%= f.hidden_field :user_id, value: params[:user_id] %>
-          <%= f.hidden_field :place_id, value: params[:place_id] %>
-          <%= f.submit "CREATE", class: "btn btn-info" %>
-        <% end %>
-      <% end %>
-    </div>
-
-    <div class="span4 offset1">
-      <h3>Add or Edit Tags</h3>
-      <%= form_for @place, url: edit_tags_path, method: :put do |f| %>
-        <p class="muted">Enter relevant tags seperated by <em>comma or space</em>:</p>
-        <%= f.text_area :tags_display, size: "60x10" %><br>
-        <%= f.submit "UPDATE", class: "btn btn-primary" %>
-      <% end %>
-    </div>
-
-    <div class="span2 right_align">
-      <%= button_to "CHECK YELP", "#{@place.url}", class: 'btn', method: :get %>
-      <%= button_to "<3 SHARE", "", class: 'btn btn-success' %>
-      <%= button_to "X DELETE", delete_place_path(place_id: @place.id), class: 'btn btn-danger', method: :delete, :confirm => "ARE YOU SURE YOU WANT TO DELETE THIS PLACE?" %>
-    </div>
-  </div>
-
 </div>
+
+<div class="row-fluid">
+  <div class="span10 offset1">
+    <hr>
+    <%= render partial: 'place-img', locals: { place: @place} %>
+    <%= render partial: 'place-info1', locals: { place: @place} %>
+    <%= render partial: 'place-info2', locals: { place: @place} %>
+
+    <div class="span2 right_align">
+      <p><b>Tags</b>: <%= @place.tags ? @place.tags_display : "None"  %></p>
+    </div>
+
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="span10 offset1">
+    <hr>
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="span10 offset1">
+    <h2>Edit the Details of This Place:</h2>
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="span3 offset1">
+    <h3>Assign to Favorite List</h3>
+    <% if List.all.count == 0 %>
+      <p>You don't have any favorite list. Make a new one here!</p>
+      <%= form_for @list, url: create_list_path, method: :post do |f| %>
+        <%= f.text_field :name, placeholder: "Enter name of your new favorite list", class: "input-xlarge" %><br/>
+        <%= f.hidden_field :user_id, value: params[:user_id] %>
+        <%= f.hidden_field :place_id, value: params[:place_id] %>
+        <%= f.submit "CREATE", class: "btn btn-info" %>
+      <% end %>
+    <% else %>
+      <%= form_for @place, url: assign_to_list_path, method: :put do |f| %>
+        <p class="muted">Check the lists you want to assign to:</p>
+        <% List.all.each do |list| %>
+          <div class="row-fluid">
+          <%= hidden_field_tag "place[list_ids][]", nil %>
+          <%= check_box_tag "place[list_ids][]", list.id, @place.lists.include?(list) %>
+          <%= label_tag list.name %>
+          </div>
+        <% end %>
+        <%= f.submit "ASSIGN", class: 'btn btn-primary' %>
+      <% end %>
+      <p class="muted">Or create a new list to assign this place to:</p>
+      <%= form_for @list, url: create_list_path, method: :post do |f| %>
+        <%= f.text_field :name, placeholder: "Enter name of your new favorite list", class: "input-xlarge" %><br/>
+        <%= f.hidden_field :user_id, value: params[:user_id] %>
+        <%= f.hidden_field :place_id, value: params[:place_id] %>
+        <%= f.submit "CREATE", class: "btn btn-info" %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="span4 offset1">
+    <h3>Add or Edit Tags</h3>
+    <%= form_for @place, url: edit_tags_path, method: :put do |f| %>
+      <p class="muted">Enter relevant tags seperated by <em>comma or space</em>:</p>
+      <%= f.text_area :tags_display, size: "60x10" %><br>
+      <%= f.submit "UPDATE", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+  <div class="span2 right_align">
+    <%= button_to "VIEW YELP", "#{@place.url}", class: 'btn', method: :get %>
+    <%= button_to "<3 SHARE", "", class: 'btn btn-success' %>
+    <%= button_to "X DELETE", delete_place_path(place_id: @place.id), class: 'btn btn-danger', method: :delete, :confirm => "ARE YOU SURE YOU WANT TO DELETE THIS PLACE?" %>
+  </div>
+</div>
+
 
 

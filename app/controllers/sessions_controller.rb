@@ -3,6 +3,8 @@ class SessionsController < ApplicationController
   def create_user
     @new_user = User.new(params[:user])
     if @new_user.save
+      logged_in_user = User.authenticate(params[:user][:email], params[:user][:password])
+      session[:user_id] = logged_in_user.id
       redirect_to "/#{@new_user.id}"
     else
       render "sign_up"
@@ -30,8 +32,8 @@ class SessionsController < ApplicationController
   end
 
   def loading
-    sleep(3)
-    redirect_to "/#{@current_user}"
+    sleep(1)
+    redirect_to "/#{@current_user.id}", notice: "Wecome back!"
   end
 
 
