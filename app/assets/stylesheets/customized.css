@@ -84,4 +84,6 @@
   background-position:center;
 }
 
-
+.white_text {
+  color: white !important;
+}

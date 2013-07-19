@@ -109,4 +109,7 @@ class UsersController < ApplicationController
       notice: "You've successfully updated the tags of this place!"
   end
 
+  def about
+  end
+
 end
