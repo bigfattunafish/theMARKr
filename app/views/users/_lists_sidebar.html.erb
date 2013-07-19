@@ -1,3 +1,10 @@
-<% User.find(@current_user.id).lists %>
-<% raise %>
-<li><a href="#">Link</a></li>
+
+<% if User.find(@current_user.id).lists.empty? %>
+  <li class="kinda_small_font"><em>No favorite list yet.</em></li>
+<% else %>
+  <% User.find(@current_user.id).lists.each do |list| %>
+    <li class="kinda_small_font"><a href="#"><%= list.name %></a></li>
+  <% end %>
+<% end %>
+
+

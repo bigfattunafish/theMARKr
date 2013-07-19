@@ -3,11 +3,11 @@
     <div class="span2">
       <div class="sidebar-nav">
         <ul class="nav nav-list">
-          <li><b><%= link_to "About This Project", "/about", class: "btn btn-block", :style => "color:#9d261d" %></b></li>
+          <li><b><%= link_to "About", "/about", class: "btn btn-block", :style => "color:#9d261d" %></b></li>
           <li><b><%= link_to "Create a New List", "/", class: "btn btn-block", :style => "color:#049cdb" %></b></li>
-          <li><b><%= link_to "Share Your List", "/", class: "btn btn-block", :style => "color:#46a546" %></b></li>
+          <li><b><%= link_to "[Share Your List]", "/", class: "btn btn-block", :style => "color:#46a546" %></b></li>
           <li class="nav-header"></li>
-          <li class="nav-header">Shortcut to Your Lists</li>
+          <li class="nav-header">Shortcut to Lists</li>
           <%= render partial: 'lists_sidebar' %>
         </ul>
       </div><!--/.well -->

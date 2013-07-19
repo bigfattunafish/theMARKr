@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20130717053214) do
     t.string   "email"
     t.string   "password_hash"
     t.string   "password_salt"
+    t.string   "zipcode"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end

@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :places, :lists
+  has_many :places
+  has_many :lists
 
   attr_accessible :username, :email, :zipcode, :password, :password_confirmation
 

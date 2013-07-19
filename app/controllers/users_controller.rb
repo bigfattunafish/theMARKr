@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     client = Yelp::Client.new
     request = Yelp::V2::Search::Request::Location.new(
       term: @place_to_search,
-      zipcode: zipcode
+      zipcode: user_zipcode,
       consumer_key: ENV['CONSUMER_KEY'],
       consumer_secret: ENV['CONSUMER_SECRET'],
       token: ENV['TOKEN'],
