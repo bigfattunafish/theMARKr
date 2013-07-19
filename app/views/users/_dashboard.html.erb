@@ -3,8 +3,9 @@
     <div class="span2">
       <div class="sidebar-nav">
         <ul class="nav nav-list">
-          <li class="btn btn-block"><b><%= link_to "About This Project", "/about", class: "text-error" %></b></li>
-          <li class="btn btn-block btn-info"><b><%= link_to "[Create a New List]", "/", class: "white_text" %></b></li>
+          <li><b><%= link_to "About This Project", "/about", class: "btn btn-block", :style => "color:#9d261d" %></b></li>
+          <li><b><%= link_to "Create a New List", "/", class: "btn btn-block", :style => "color:#049cdb" %></b></li>
+          <li><b><%= link_to "Share Your List", "/", class: "btn btn-block", :style => "color:#46a546" %></b></li>
           <li class="nav-header"></li>
           <li class="nav-header">Shortcut to Your Lists</li>
           <li><a href="#">Link</a></li>
@@ -22,7 +23,8 @@
     </div><!--/span-->
 
     <div class="span9 dashboard_box">
-      [Map filters here]
+      <p>out of <%= @places.count %> places</p>
+      <input></input>
     </div>
 
     <div class="span10">

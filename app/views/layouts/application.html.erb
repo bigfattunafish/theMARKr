@@ -7,11 +7,11 @@
   <%= csrf_meta_tags %>
   <link href="../assets/stylesheets/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
-<body>
+<body class="paperbg">
   <%= render partial: 'navbar' %>
 
 <div class="row">
-  <div class="span8 offset1">
+  <div class="span8 offset4">
     <% flash.each do |name, msg| %>
       <div class="alert alert-info"><%= content_tag :div, msg, :id => "flash#{name}" %></div>
     <% end %>
@@ -19,7 +19,17 @@
 </div>
 
   <%= yield %>
+
+  <div class="container">
+    <footer>
+      <p class="small_font">All rights reserved. Created by <a href="/about">Thomas Y.</a></p>
+    </footer>
+  </div>
+
   <%= yield :scripts %>
   <script src="../assets/javascripts/bootstrap.min.js"></script>
 </body>
 </html>
+
+
+

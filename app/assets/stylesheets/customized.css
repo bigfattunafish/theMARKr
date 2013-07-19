@@ -50,6 +50,8 @@
   padding: 10px;
   border-radius: 5px;
   height: 75px;
+  width: 964px !important;
+  background: white;
 }
 
 .dashboard_map {
@@ -68,7 +70,15 @@
   padding: 0 15px;
 }
 
-.homebg {
+.paperbg {
+  background: url('groovepaper.png');
+  /*background-size: cover;*/
+  background-repeat: repeat;
+  background-attachment:fixed;
+  background-position:center;
+}
+
+#homebg {
   background: url('landing1-copy.jpg');
   background-size: cover;
   background-repeat:no-repeat;
@@ -76,7 +86,7 @@
   background-position:center;
 }
 
-.goodbye {
+#goodbye {
   background: url('goodbye.jpeg');
   background-size: cover;
   background-repeat:no-repeat;
@@ -84,6 +94,12 @@
   background-position:center;
 }
 
-.white_text {
-  color: white !important;
+.red_font {
+  color: red !important;
 }
+
+
+
+
+
+

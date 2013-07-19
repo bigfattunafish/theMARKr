@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
 
   def loading
     sleep(1)
-    redirect_to "/#{@current_user.id}", notice: "Wecome back!"
+    redirect_to "/#{@current_user.id}", notice: "Wecome back, #{@current_user.username}!"
   end
 
 

@@ -10,7 +10,7 @@
         <% end %>
       </div>
 
-      <div class="span4">
+      <div class="span3">
         <div class="big_bright_font">
           <%= counter %>.
           <%= link_to "#{place.name}", "/#{params[:user_id]}/#{place.id}"  %>
@@ -20,7 +20,9 @@
         <%= place["review_count"] %> reviews
       </div>
 
-      <%= place["categories"].flatten.map{ |category| category.titleize }.uniq.to_sentence(:last_word_connector => ", ") unless place["categories"].nil? %>
+      <div class="span5">
+        <%= place["tags"].to_sentence(words_connector: ", ", last_word_connector: ", ", two_words_connector: ", ") unless place["categories"].nil? %>
+      </div>
 
   </div>
 <% end %>
