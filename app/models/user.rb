@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :places, :lists
 
-  attr_accessible :username, :email, :password, :password_confirmation
+  attr_accessible :username, :email, :zipcode, :password, :password_confirmation
 
   # This might not be in the database
   attr_accessor :password
@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true
   validates :email, uniqueness: true
+
+  validates :zipcode, presence: true
+  validates :zipcode, :length => { :is => 5 }
+  validates :zipcode, :numericality => true
 
   def encrypt_password
     if password.present?

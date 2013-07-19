@@ -12,11 +12,12 @@ class UsersController < ApplicationController
 
   def search
     @place_to_search = params[:place_name]
+    user_zipcode = User.find(@current_user.id).zipcode
 
     client = Yelp::Client.new
     request = Yelp::V2::Search::Request::Location.new(
       term: @place_to_search,
-      city: 'New York',
+      zipcode: zipcode
       consumer_key: ENV['CONSUMER_KEY'],
       consumer_secret: ENV['CONSUMER_SECRET'],
       token: ENV['TOKEN'],
